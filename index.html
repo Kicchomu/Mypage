@@ -212,6 +212,39 @@
                 200人規模のイベント主催などで培った「多様な人を巻き込み推進する力」と、
                 データサイエンスの「技術的土台」の双方を最大限に活かせる理想的な環境だと判断した。
               </p>
+
+              <!-- End-to-End comparison bar -->
+              <div class="e2e-comparison">
+                <div class="e2e-labels-row">
+                  <div class="e2e-label-spacer"></div>
+                  <div class="e2e-step-labels">
+                    <span>戦略・企画</span>
+                    <span>システム設計</span>
+                    <span>開発・AI実装</span>
+                    <span>運用・伴走</span>
+                  </div>
+                </div>
+                <div class="e2e-row">
+                  <span class="e2e-name e2e-name--muted">戦略コンサル</span>
+                  <div class="e2e-track">
+                    <div class="e2e-bar e2e-bar--active" style="flex:1"></div>
+                    <div class="e2e-bar e2e-bar--inactive" style="flex:3"></div>
+                  </div>
+                </div>
+                <div class="e2e-row">
+                  <span class="e2e-name e2e-name--muted">SIer</span>
+                  <div class="e2e-track">
+                    <div class="e2e-bar e2e-bar--inactive" style="flex:2"></div>
+                    <div class="e2e-bar e2e-bar--active" style="flex:2"></div>
+                  </div>
+                </div>
+                <div class="e2e-row">
+                  <span class="e2e-name e2e-name--accent">✦ アクセンチュア</span>
+                  <div class="e2e-track">
+                    <div class="e2e-bar e2e-bar--full"></div>
+                  </div>
+                </div>
+              </div>
             </article>
 
             <div class="decision-layout">
@@ -274,36 +307,81 @@
             <article class="industry-card reveal">
               <p class="industry-kicker">Market Scale</p>
               <h3>業界の規模と成長性</h3>
-              <p>
-                グローバルITコンサルティング市場は2024年時点で約6,000億ドル規模に達し、DX推進・クラウド移行・AI導入を主要ドライバーとして年率8〜10%の成長が続くと予測されています。日本国内でもIT投資意欲は旺盛で、コンサルティング需要は拡大しています。
-              </p>
+              <div class="industry-infographic">
+                <div class="infographic-big-number">
+                  <span class="infographic-value" aria-label="年率8から10パーセント">8<small aria-hidden="true">〜</small>10<small>%</small></span>
+                  <span class="infographic-unit">年率成長</span>
+                </div>
+                <div class="infographic-chart" aria-hidden="true">
+                  <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="growth-curve">
+                    <defs>
+                      <linearGradient id="curveGrad" x1="0" y1="0" x2="200" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#8b3dff" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#d0a1ff" stop-opacity="0.9"/>
+                      </linearGradient>
+                      <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="60" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#8b3dff" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#8b3dff" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0 55 C30 52 60 46 90 36 C120 26 150 14 200 4" stroke="url(#curveGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M0 55 C30 52 60 46 90 36 C120 26 150 14 200 4 L200 60 L0 60 Z" fill="url(#fillGrad)"/>
+                  </svg>
+                </div>
+              </div>
               <ul class="industry-points">
+                <li>グローバル市場は約6,000億ドル規模（2024年）</li>
                 <li>DX・クラウド・AI実装が市場成長の中核ドライバー</li>
                 <li>大企業だけでなく中堅企業のDX需要も急拡大</li>
               </ul>
             </article>
 
             <article class="industry-card reveal">
-              <p class="industry-kicker">Key Players</p>
-              <h3>業界の主要企業</h3>
-              <p>
-                コンサルティング業界は戦略系のMBB（McKinsey・BCG・Bain）や総合系のBig4（Deloitte・PwC・EY・KPMG）、そしてアクセンチュアやIBMのようなテック系コンサルが並立します。近年は戦略・テクノロジー・実装を一体提供できる「フルサービス型」企業の存在感が急速に高まっています。
-              </p>
-              <ul class="industry-points">
-                <li>各社ともAI・データ分野への積極投資で差別化を図る</li>
-              </ul>
+              <p class="industry-kicker">Positioning Map</p>
+              <h3>業界の立ち位置</h3>
+              <div class="positioning-map" aria-label="業界ポジショニングマップ">
+                <div class="pos-map-inner">
+                  <!-- Y-axis label top -->
+                  <div class="pos-axis-label pos-axis-y-top">AI・先端実装</div>
+                  <!-- X-axis label left -->
+                  <div class="pos-axis-label pos-axis-x-left">戦略・助言</div>
+                  <!-- X-axis label right -->
+                  <div class="pos-axis-label pos-axis-x-right">実行・開発</div>
+                  <!-- Y-axis label bottom -->
+                  <div class="pos-axis-label pos-axis-y-bottom">従来型業務</div>
+                  <!-- Axis lines -->
+                  <div class="pos-axis pos-axis-h"></div>
+                  <div class="pos-axis pos-axis-v"></div>
+                  <!-- Companies -->
+                  <div class="pos-dot pos-dot--muted" style="left:28%;top:68%;" aria-label="Big4等（従来型コンサル）">
+                    <span class="pos-dot-label">Big4等</span>
+                  </div>
+                  <div class="pos-dot pos-dot--muted" style="left:22%;top:28%;" aria-label="MBB（戦略コンサル）">
+                    <span class="pos-dot-label">MBB</span>
+                  </div>
+                  <div class="pos-dot pos-dot--muted" style="left:72%;top:72%;" aria-label="従来型SIer">
+                    <span class="pos-dot-label">SIer</span>
+                  </div>
+                  <div class="pos-dot pos-dot--accent pos-dot--glow" style="left:76%;top:18%;" aria-label="アクセンチュア（最先端・実行力）">
+                    <span class="pos-dot-label pos-dot-label--accent">アクセンチュア</span>
+                  </div>
+                </div>
+              </div>
             </article>
 
             <article class="industry-card reveal">
               <p class="industry-kicker">Work &amp; Compensation</p>
               <h3>働き方と待遇水準</h3>
-              <p>
-                コンサル業界は高い知的負荷と引き換えに、業界トップクラスの報酬水準を誇ります。近年は働き方改革も進み、残業削減やリモートワーク活用が広がっています。
-              </p>
+              <div class="industry-infographic">
+                <div class="infographic-big-number">
+                  <span class="infographic-value" aria-label="600万から800万円">600<small aria-hidden="true">〜</small>800<small>万</small></span>
+                  <span class="infographic-unit">新卒年収スタート</span>
+                </div>
+              </div>
               <ul class="industry-points">
-                <li>新卒年収は600〜800万円台からスタート</li>
                 <li>PM・マネージャー級は1,000万円超が一般的</li>
                 <li>年功序列より成果主義・スキルベースの評価が主流</li>
+                <li>残業削減・リモートワーク活用が広がり働き方改革も進行中</li>
               </ul>
             </article>
           </div>
