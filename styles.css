@@ -1362,6 +1362,36 @@ button:focus-visible {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.life-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(241, 195, 255, 0.12), rgba(161, 0, 255, 0.2));
+  color: #d4a5ff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  transition: background 220ms ease, box-shadow 220ms ease;
+}
+
+.life-card-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.life-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.life-card-header h3 {
+  margin: 0;
+}
+
 .strength-card ul {
   display: grid;
   gap: 12px;
@@ -1746,6 +1776,11 @@ button:focus-visible {
   .button:hover .hero-badge-dot {
     transform: scale(1.08);
     box-shadow: 0 0 26px rgba(161, 0, 255, 0.55);
+  }
+
+  .life-card:hover .life-card-icon {
+    background: linear-gradient(135deg, rgba(241, 195, 255, 0.22), rgba(161, 0, 255, 0.32));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), 0 0 22px rgba(161, 0, 255, 0.24);
   }
 }
 
