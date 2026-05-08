@@ -232,7 +232,9 @@ if (coverLetter) {
       unlocked: false,
     };
     setCoverSwipeProgress(0);
-    coverLetter.setPointerCapture?.(event.pointerId);
+    if (typeof coverLetter.setPointerCapture === "function") {
+      coverLetter.setPointerCapture(event.pointerId);
+    }
   });
 
   coverLetter.addEventListener("pointermove", (event) => {
@@ -685,8 +687,8 @@ lifeplanCards.forEach((card) => {
     body.append(card);
     updateLifeDragPosition(event.clientX, event.clientY);
     window.addEventListener("pointermove", handleLifePointerMove);
-    window.addEventListener("pointerup", handleLifePointerUp, { once: false });
-    window.addEventListener("pointercancel", handleLifePointerUp, { once: false });
+    window.addEventListener("pointerup", handleLifePointerUp);
+    window.addEventListener("pointercancel", handleLifePointerUp);
   });
 });
 
