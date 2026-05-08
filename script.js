@@ -585,6 +585,14 @@ const clearLifeplanTargets = () => {
   lifeplanSlots.forEach((slot) => slot.classList.remove("is-target"));
 };
 
+const isValidLifeDropTarget = (candidate, card) =>
+  Boolean(
+    candidate &&
+      card &&
+      Number(candidate.dataset.slot) === Number(card.dataset.lifeStep) &&
+      !candidate.querySelector(".life-card"),
+  );
+
 const updateLifeDragPosition = (clientX, clientY) => {
   if (!lifeDragState) {
     return;
@@ -597,7 +605,7 @@ const updateLifeDragPosition = (clientX, clientY) => {
 
   clearLifeplanTargets();
   const candidate = document.elementFromPoint(clientX, clientY)?.closest(".lifeplan-slot");
-  if (candidate && candidate.dataset.slot === card.dataset.lifeStep && !candidate.querySelector(".life-card")) {
+  if (isValidLifeDropTarget(candidate, card)) {
     candidate.classList.add("is-target");
   }
 };
@@ -637,10 +645,7 @@ const handleLifePointerUp = (event) => {
 
   const { card } = lifeDragState;
   const candidate = document.elementFromPoint(event.clientX, event.clientY)?.closest(".lifeplan-slot");
-  const isCorrectSlot =
-    candidate &&
-    candidate.dataset.slot === card.dataset.lifeStep &&
-    !candidate.querySelector(".life-card");
+  const isCorrectSlot = isValidLifeDropTarget(candidate, card);
 
   if (isCorrectSlot) {
     clearLifeplanTargets();

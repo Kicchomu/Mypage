@@ -1709,17 +1709,17 @@ button:focus-visible {
   width: min(100%, 240px);
 }
 
-#lifeplan-deck .life-card {
+.lifeplan-deck .life-card {
   touch-action: none;
   cursor: grab;
   user-select: none;
 }
 
-#lifeplan-deck .life-card:not(.is-current):not(.is-placed) {
+.lifeplan-deck .life-card:not(.is-current):not(.is-placed) {
   display: none;
 }
 
-#lifeplan-deck .life-card.is-current {
+.lifeplan-deck .life-card.is-current {
   display: block;
 }
 
@@ -1740,8 +1740,7 @@ button:focus-visible {
   margin: 0;
 }
 
-.life-card--purpose,
-.lifeplan-slot--4 .life-card {
+.life-card--purpose {
   animation: heartbeatGlow 2s ease-in-out infinite;
 }
 
@@ -2368,7 +2367,7 @@ body.modal-open {
     box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.12);
   }
 
-  #lifeplan-deck {
+  .lifeplan-deck {
     grid-template-columns: 1fr;
   }
 }
