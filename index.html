@@ -47,12 +47,27 @@
         <p class="cover-eyebrow">A Message About My Future</p>
         <h1 class="cover-title">Career Letter<br><span>Taisei Kikkawa</span></h1>
         <p class="cover-subtitle">これからの進路と、その理由について。</p>
-        <button id="open-letter-btn" class="cover-button">
-          <span class="cover-button-text">Open Letter</span>
-          <svg class="cover-button-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <div
+          id="cover-letter"
+          class="cover-letter"
+          role="button"
+          tabindex="0"
+          aria-describedby="cover-swipe-hint"
+          aria-label="封筒を下から上へスワイプして開封する"
+        >
+          <div class="cover-letter-envelope" aria-hidden="true">
+            <div class="cover-letter-paper">
+              <span>To My Family</span>
+              <strong>これからの進路について</strong>
+            </div>
+            <div class="cover-letter-body"></div>
+            <div class="cover-letter-flap"></div>
+          </div>
+          <div class="cover-swipe-track" aria-hidden="true">
+            <span class="cover-swipe-thumb"></span>
+          </div>
+          <p id="cover-swipe-hint" class="cover-swipe-hint">下から上へスワイプして、手紙を開封してください</p>
+        </div>
       </div>
     </div>
 
@@ -100,6 +115,13 @@
                 <span class="accent-line">なぜこの道を選んだのか</span>
                 <span>まで、きちんと伝える。</span>
               </h1>
+              <p
+                class="hero-lead hero-typing"
+                data-typing-text="就活の結論だけでなく、その裏側にある考え方や覚悟まで、今の自分の言葉で丁寧に届けたいと思っています。"
+              >
+                <span class="hero-typing-text"></span>
+                <span class="hero-typing-cursor" aria-hidden="true"></span>
+              </p>
             </div>
 
             <div class="hero-side reveal">
@@ -247,7 +269,15 @@
             </article>
 
             <div class="decision-layout">
-              <article class="feature-card reveal">
+              <article
+                class="feature-card reveal modal-trigger-card"
+                tabindex="0"
+                role="button"
+                aria-haspopup="dialog"
+                data-modal-kicker="Decision Evidence 01"
+                data-modal-title="高度＆多様な課題に挑む"
+                data-modal-source="decision-evidence-1"
+              >
                 <span class="feature-index">01</span>
                 <h3>高度＆多様な課題に挑む</h3>
                 <p>
@@ -255,24 +285,73 @@
                   戦略、テクノロジー、デザインなど複数のサービスを統合して提供するアクセンチュアの体制は <a href="#ref-27" class="cite-link"><cite>27</cite></a><a href="#ref-28" class="cite-link"><cite>28</cite></a>、
                   自分の幅広い知的好奇心を満たす環境です。
                 </p>
+                <p class="feature-card-cta">タップして裏付けを見る</p>
               </article>
-              <article class="feature-card reveal">
+              <article
+                class="feature-card reveal modal-trigger-card"
+                tabindex="0"
+                role="button"
+                aria-haspopup="dialog"
+                data-modal-kicker="Decision Evidence 02"
+                data-modal-title="AIの社会実装の最前線に立てる"
+                data-modal-source="decision-evidence-2"
+              >
                 <span class="feature-index">02</span>
                 <h3>AIの社会実装の最前線に立てる</h3>
                 <p>
                   現在、アクセンチュアはAI技術に約30億ドル規模の投資を行い <a href="#ref-17" class="cite-link"><cite>17</cite></a>、ビジネスの基盤にAIを組み込む
                   変革を牽引しています。自分が研究してきたAIの知見を、日本を代表する企業の大規模な案件で直接活かすことができます。
                 </p>
+                <p class="feature-card-cta">タップして裏付けを見る</p>
               </article>
-              <article class="feature-card reveal">
+              <article
+                class="feature-card reveal modal-trigger-card"
+                tabindex="0"
+                role="button"
+                aria-haspopup="dialog"
+                data-modal-kicker="Decision Evidence 03"
+                data-modal-title="将来のPMへつながる"
+                data-modal-source="decision-evidence-3"
+              >
                 <span class="feature-index">03</span>
                 <h3>将来のPMへつながる</h3>
                 <p>
                   長期的に目指すのは、仕組みを作り、人を動かし、事業に影響を与える立場です。
                   その土台として、若手から裁量権を持ち、圧倒的な成長速度でプロジェクト推進力を磨けるこの場所が最も再現性が高いと考えました。
                 </p>
+                <p class="feature-card-cta">タップして裏付けを見る</p>
               </article>
             </div>
+          </div>
+
+          <div class="detail-modal-source" id="decision-evidence-1" hidden>
+            <p>
+              将棋AI研究では、単純な精度追求ではなく「どう判断したかを説明できること」が重要でした。
+              その経験から、技術そのものよりも、複数の論点を整理して価値につなげる仕事に強く惹かれるようになりました。
+            </p>
+            <p>
+              戦略・テクノロジー・デザインを横断できるアクセンチュアなら、ひとつの専門だけに閉じず、
+              難しい課題を構造化しながら多面的に向き合う姿勢をそのまま仕事にできます。
+            </p>
+          </div>
+          <div class="detail-modal-source" id="decision-evidence-2" hidden>
+            <p>
+              大学院でのAI研究では、モデルの性能改善だけでなく、現実の意思決定に活かせる形に落とし込む難しさを体感しました。
+              そのため、研究知見を社会実装へつなぐ現場に身を置きたいという思いが強くあります。
+            </p>
+            <p>
+              アクセンチュアの大規模案件なら、将棋AI研究で培った仮説検証力や説明力を、
+              企業の変革や業務改善という形でダイレクトに活かせると考えました。
+            </p>
+          </div>
+          <div class="detail-modal-source" id="decision-evidence-3" hidden>
+            <p>
+              200人規模イベントの主催やインターンでの推進経験を通じて、技術理解だけでなく、
+              人を巻き込みながら前に進める役割に強いやりがいを感じてきました。
+            </p>
+            <p>
+              若いうちから実装・調整・推進を横断して経験できる環境は、将来PMとして案件を動かすための最短距離だと感じています。
+            </p>
           </div>
         </section>
 
@@ -396,20 +475,20 @@
 
           <div class="acn-stats reveal">
             <div class="acn-stat-item">
-              <span class="acn-stat-number">1989</span>
-              <span class="acn-stat-label">設立年</span>
-            </div>
-            <div class="acn-stat-item">
-              <span class="acn-stat-number">78万<small>+</small></span>
+              <span class="acn-stat-number" data-count-to="78" data-suffix="万+" data-decimals="0">0</span>
               <span class="acn-stat-label">従業員数</span>
             </div>
             <div class="acn-stat-item">
-              <span class="acn-stat-number">$69.6B</span>
+              <span class="acn-stat-number" data-count-to="69.6" data-prefix="$" data-suffix="B" data-decimals="1">0</span>
               <span class="acn-stat-label">FY2025 売上高</span>
             </div>
             <div class="acn-stat-item">
-              <span class="acn-stat-number">120<small>+</small></span>
+              <span class="acn-stat-number" data-count-to="120" data-suffix="+" data-decimals="0">0</span>
               <span class="acn-stat-label">事業展開国数</span>
+            </div>
+            <div class="acn-stat-item">
+              <span class="acn-stat-number" data-count-to="1" data-suffix="時間未満" data-decimals="0">0</span>
+              <span class="acn-stat-label">平均残業</span>
             </div>
           </div>
 
@@ -497,7 +576,15 @@
             <p class="industry-kicker">Future Outlook</p>
             <h3>アクセンチュアの今後の展望</h3>
             <div class="acn-outlook-grid">
-              <div class="acn-outlook-item">
+              <div
+                class="acn-outlook-item modal-trigger-card"
+                tabindex="0"
+                role="button"
+                aria-haspopup="dialog"
+                data-modal-kicker="Accenture Outlook 01"
+                data-modal-title="AI主導の変革加速"
+                data-modal-source="accenture-evidence-1"
+              >
                 <span class="acn-outlook-num">01</span>
                 <strong>AI主導の変革加速</strong>
                 <p>
@@ -505,25 +592,71 @@
                   Google Cloudなどとの戦略提携 <a href="#ref-24" class="cite-link"><cite>24</cite></a> により、
                   エージェント型AIによる企業変革を牽引。
                 </p>
+                <p class="feature-card-cta">タップして裏付けを見る</p>
               </div>
-              <div class="acn-outlook-item">
+              <div
+                class="acn-outlook-item modal-trigger-card"
+                tabindex="0"
+                role="button"
+                aria-haspopup="dialog"
+                data-modal-kicker="Accenture Outlook 02"
+                data-modal-title="Reinvention戦略"
+                data-modal-source="accenture-evidence-2"
+              >
                 <span class="acn-outlook-num">02</span>
                 <strong>Reinvention戦略</strong>
                 <p>
                   提案から実装・運用まで一気通貫で変革支援する「フルサービス実行型」へのシフトを加速 <a href="#ref-27" class="cite-link"><cite>28</cite></a>。
                   2025年Tech Visionで「AIによる自律性の拡大」を強調 <a href="#ref-18" class="cite-link"><cite>18</cite></a>。
                 </p>
+                <p class="feature-card-cta">タップして裏付けを見る</p>
               </div>
-              <div class="acn-outlook-item">
+              <div
+                class="acn-outlook-item modal-trigger-card"
+                tabindex="0"
+                role="button"
+                aria-haspopup="dialog"
+                data-modal-kicker="Accenture Outlook 03"
+                data-modal-title="テクノロジー人材育成"
+                data-modal-source="accenture-evidence-3"
+              >
                 <span class="acn-outlook-num">03</span>
                 <strong>テクノロジー人材育成</strong>
                 <p>
                   年間10億ドルの教育投資 <a href="#ref-62" class="cite-link"><cite>62</cite></a> で人材力を強化し、
                   AI・クラウド・セキュリティ領域を中心に急拡大する案件需要へ対応。
                 </p>
+                <p class="feature-card-cta">タップして裏付けを見る</p>
               </div>
             </div>
           </article>
+          <div class="detail-modal-source" id="accenture-evidence-1" hidden>
+            <p>
+              AI投資と戦略提携は、単なる研究開発ではなく「企業の現場をどう変えるか」まで踏み込むための布石です。
+              テクノロジーの進歩を、事業変革のスピードへ変換できるのがアクセンチュアの強みだと感じています。
+            </p>
+            <p>
+              技術に閉じず、現場の業務設計や導入後の定着まで支援する姿勢は、自分が目指す実装志向のキャリアとも一致しています。
+            </p>
+          </div>
+          <div class="detail-modal-source" id="accenture-evidence-2" hidden>
+            <p>
+              Reinvention戦略は、戦略だけで終わらず実装・運用まで責任を持つ体制をさらに強化する考え方です。
+              これは「助言より実行に価値が宿る」と感じてきた自分にとって、非常に納得感のある方向性でした。
+            </p>
+            <p>
+              将来PMを目指すうえでも、上流から現場定着までを俯瞰できる環境は大きな成長機会になります。
+            </p>
+          </div>
+          <div class="detail-modal-source" id="accenture-evidence-3" hidden>
+            <p>
+              年間10億ドル規模の教育投資は、変化の激しい技術領域において継続的に学び続ける文化の裏付けです。
+              AI・クラウド・セキュリティのような領域を伸ばすには、個人努力だけでなく会社としての学習基盤が重要です。
+            </p>
+            <p>
+              入社後に新しい分野へ挑戦し続けるための土台がある点も、長期的なキャリア形成において魅力だと感じています。
+            </p>
+          </div>
         </section>
 
         <section class="section" id="timeline">
@@ -551,6 +684,19 @@
           </div>
 
           <div class="timeline">
+            <div class="timeline-progress" aria-hidden="true">
+              <svg viewBox="0 0 24 1000" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="timelineFlow" x1="12" y1="12" x2="12" y2="988" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#f1c3ff"></stop>
+                    <stop offset="55%" stop-color="#b05dff"></stop>
+                    <stop offset="100%" stop-color="#5b21ff"></stop>
+                  </linearGradient>
+                </defs>
+                <path class="timeline-progress-track" d="M12 12 L12 988" pathLength="100"></path>
+                <path id="timeline-progress-fill" class="timeline-progress-fill" d="M12 12 L12 988" pathLength="100"></path>
+              </svg>
+            </div>
             <article class="timeline-item reveal">
               <span class="timeline-dot"></span>
               <div class="timeline-content">
@@ -649,7 +795,7 @@
           </div>
 
           <figure class="venn-wrap reveal" aria-label="技術の土台・仕組み化の力・人を動かす力の3つの強みが交わるソリューションエンジニアを示すベン図">
-            <svg class="venn-svg" viewBox="0 0 500 390" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <svg class="venn-svg" viewBox="0 0 500 390" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <radialGradient id="vg1" cx="35%" cy="35%" r="65%">
                   <stop offset="0%" stop-color="#a855f7" stop-opacity="0.28"/>
@@ -673,6 +819,9 @@
               <circle cx="165" cy="145" r="100" fill="url(#vg1)"/>
               <circle cx="335" cy="145" r="100" fill="url(#vg2)"/>
               <circle cx="250" cy="273" r="100" fill="url(#vg3)"/>
+              <circle class="venn-zone venn-zone--tech" cx="165" cy="145" r="100" fill="transparent" data-strength="tech" role="button" tabindex="0" aria-label="技術の土台を表示"/>
+              <circle class="venn-zone venn-zone--system" cx="335" cy="145" r="100" fill="transparent" data-strength="system" role="button" tabindex="0" aria-label="仕組み化の力を表示"/>
+              <circle class="venn-zone venn-zone--people" cx="250" cy="273" r="100" fill="transparent" data-strength="people" role="button" tabindex="0" aria-label="人を動かす力を表示"/>
 
               <!-- Circle strokes -->
               <circle cx="165" cy="145" r="100" fill="none" stroke="#8b3dff" stroke-width="1.5" stroke-opacity="0.6"/>
@@ -703,7 +852,7 @@
           </figure>
 
           <div class="strength-grid">
-            <article class="strength-card reveal">
+            <article class="strength-card reveal" data-strength="tech">
               <h3>技術の土台</h3>
               <ul>
                 <li>AI・データサイエンス・将棋AI研究</li>
@@ -712,7 +861,7 @@
               </ul>
             </article>
 
-            <article class="strength-card reveal">
+            <article class="strength-card reveal" data-strength="system">
               <h3>仕組み化の力</h3>
               <ul>
                 <li>業務改善やDXに関わるインターン経験</li>
@@ -721,7 +870,7 @@
               </ul>
             </article>
 
-            <article class="strength-card reveal">
+            <article class="strength-card reveal" data-strength="people">
               <h3>人を動かす力</h3>
               <ul>
                 <li>200人規模イベントの主催・推進</li>
@@ -743,8 +892,12 @@
           </div>
 
           <div class="roadmap-journey reveal" aria-label="キャリアロードマップ">
-            <div class="roadmap-flow">
-              <div class="roadmap-stage">
+            <p class="roadmap-swipe-hint">左右にスワイプして、次のフェーズへ進んでください</p>
+            <div class="roadmap-rail" aria-hidden="true">
+              <span class="roadmap-current-dot"></span>
+            </div>
+            <div class="roadmap-flow" id="roadmap-flow">
+              <div class="roadmap-stage" data-step="0">
                 <span class="roadmap-node" aria-hidden="true"></span>
                 <article class="roadmap-card road-stop">
                   <p class="road-stop-step">STEP 01</p>
@@ -757,7 +910,7 @@
                 </article>
               </div>
 
-              <div class="roadmap-stage">
+              <div class="roadmap-stage" data-step="1">
                 <span class="roadmap-node" aria-hidden="true"></span>
                 <article class="roadmap-card road-stop">
                   <p class="road-stop-step">STEP 02</p>
@@ -770,7 +923,7 @@
                 </article>
               </div>
 
-              <div class="roadmap-stage">
+              <div class="roadmap-stage" data-step="2">
                 <span class="roadmap-node" aria-hidden="true"></span>
                 <article class="roadmap-card road-stop">
                   <p class="road-stop-step">STEP 03</p>
@@ -816,8 +969,23 @@
             </article>
           </div>
 
-          <div class="lifeplan-layout">
-            <article class="life-card reveal">
+          <div class="lifeplan-builder reveal" id="lifeplan-builder">
+            <div class="lifeplan-builder-copy">
+              <p class="lifeplan-builder-kicker">Build My Future</p>
+              <p class="lifeplan-builder-text">
+                あなたの手で組み立ててみてください。カードを順番にドラッグして、人生設計のピラミッドを完成させます。
+              </p>
+            </div>
+
+            <div class="lifeplan-pyramid" aria-label="人生設計のピラミッド">
+              <div class="lifeplan-slot lifeplan-slot--1" data-slot="1"><span>働き方の理想</span></div>
+              <div class="lifeplan-slot lifeplan-slot--2" data-slot="2"><span>経済的な考え方</span></div>
+              <div class="lifeplan-slot lifeplan-slot--3" data-slot="3"><span>家族について</span></div>
+              <div class="lifeplan-slot lifeplan-slot--4" data-slot="4"><span>人生の目的</span></div>
+            </div>
+
+            <div class="lifeplan-layout" id="lifeplan-deck">
+            <article class="life-card life-card--purpose" data-life-step="4">
               <div class="life-card-header">
                 <div class="life-card-icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -835,7 +1003,7 @@
               </p>
             </article>
 
-            <article class="life-card reveal">
+            <article class="life-card" data-life-step="3">
               <div class="life-card-header">
                 <div class="life-card-icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -851,7 +1019,7 @@
               </p>
             </article>
 
-            <article class="life-card reveal">
+            <article class="life-card" data-life-step="2">
               <div class="life-card-header">
                 <div class="life-card-icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -867,7 +1035,7 @@
               </p>
             </article>
 
-            <article class="life-card reveal">
+            <article class="life-card" data-life-step="1">
               <div class="life-card-header">
                 <div class="life-card-icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -881,6 +1049,10 @@
                 その上で、仕事だけでなく、人間関係や生活の充実も大切にします。
               </p>
             </article>
+            </div>
+            <p id="lifeplan-complete-message" class="lifeplan-complete-message" hidden>
+              完璧な土台が完成しました。ここから先は、感謝を形にしていくフェーズです。
+            </p>
           </div>
         </section>
 
@@ -925,6 +1097,16 @@
       </svg>
       <span>Top</span>
     </button>
+
+    <div id="detail-modal" class="detail-modal" hidden aria-hidden="true">
+      <div class="detail-modal-backdrop" data-modal-close></div>
+      <div class="detail-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-modal-title">
+        <button type="button" class="detail-modal-close" data-modal-close aria-label="モーダルを閉じる">×</button>
+        <p id="detail-modal-kicker" class="detail-modal-kicker"></p>
+        <h3 id="detail-modal-title"></h3>
+        <div id="detail-modal-body" class="detail-modal-body"></div>
+      </div>
+    </div>
 
     <script src="./script.js"></script>
   </body>
