@@ -1,3 +1,7 @@
+---
+import { publicAsset } from '../utils/publicAsset';
+---
+
 <section class="section hero">
   <div class="hero-grid">
     <div class="hero-copy reveal">
@@ -44,7 +48,7 @@
         <div class="accenture-logo-wrap">
           <img
             class="accenture-logo"
-            src={`${import.meta.env.BASE_URL}accenture-logo.svg`}
+            src={publicAsset('accenture-logo.svg')}
             alt="Accenture logo"
           />
         </div>

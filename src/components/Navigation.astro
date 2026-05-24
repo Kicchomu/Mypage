@@ -1,7 +1,11 @@
+---
+import { publicAsset } from '../utils/publicAsset';
+---
+
 <header class="site-header">
   <div class="site-header-inner">
     <a class="brand" href="#top" aria-label="Career Letter top">
-      <img class="brand-mark" src={`${import.meta.env.BASE_URL}ACNminilogo.jpg`} alt="Accenture symbol" />
+      <img class="brand-mark" src={publicAsset('ACNminilogo.jpg')} alt="Accenture symbol" />
       <span class="brand-copy">
         <strong>Taisei Kikkawa</strong>
         <small>Career Letter</small>
