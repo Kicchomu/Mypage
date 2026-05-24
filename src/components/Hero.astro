@@ -1,5 +1,5 @@
 ---
-import { publicAsset } from '../utils/publicAsset';
+import accentureLogo from '../assets/accenture-logo.svg';
 ---
 
 <section class="section hero">
@@ -48,8 +48,12 @@ import { publicAsset } from '../utils/publicAsset';
         <div class="accenture-logo-wrap">
           <img
             class="accenture-logo"
-            src={publicAsset('accenture-logo.svg')}
+            src={accentureLogo.src}
             alt="Accenture logo"
+            width={accentureLogo.width}
+            height={accentureLogo.height}
+            loading="eager"
+            decoding="async"
           />
         </div>
 

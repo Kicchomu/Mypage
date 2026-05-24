@@ -482,16 +482,15 @@ button:focus-visible {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #efdcff, #b25dff 52%, #7b2dff);
-  color: #1d0632;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  object-fit: cover;
+  object-position: center;
+  background: #fff;
   box-shadow: 0 10px 24px rgba(161, 0, 255, 0.24);
+  flex-shrink: 0;
 }
 
 .brand-copy {
@@ -883,7 +882,10 @@ button:focus-visible {
 }
 
 .accenture-logo {
+  display: block;
   width: min(100%, 280px);
+  height: auto;
+  margin: 0 auto;
   filter: drop-shadow(0 8px 20px rgba(122, 58, 184, 0.2));
 }
 
