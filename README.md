@@ -1,43 +1,43 @@
-# Astro Starter Kit: Minimal
+# Mypage
+
+就職活動の経緯・意思決定・将来計画をまとめた、Astro製のポートフォリオ/キャリアレターサイトです。
+
+## 技術スタック
+
+- Astro 6
+- JavaScript / Astro Components
+- GSAP
+
+## セットアップ
 
 ```sh
-npm create astro@latest -- --template minimal
+npm ci
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 開発コマンド
 
-## 🚀 Project Structure
+| Command | Action |
+| :-- | :-- |
+| `npm run dev` | 開発サーバーを起動（`http://localhost:4321`） |
+| `npm run build` | 本番用ビルドを生成（`dist/`） |
+| `npm run preview` | ビルド結果をローカル確認 |
 
-Inside of your Astro project, you'll see the following folders and files:
+## ディレクトリ構成（抜粋）
 
 ```text
 /
-├── public/
+├── public/                 # 画像などの静的アセット
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/         # セクション別UIコンポーネント
+│   ├── layouts/            # 共通レイアウト
+│   ├── pages/
+│   │   └── index.astro     # トップページ
+│   ├── scripts/            # アニメーション等のフロント処理
+│   └── styles/             # スタイルシート
+├── astro.config.mjs        # GitHub Pages向け設定（site/base）
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## デプロイに関する補足
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+このリポジトリは `astro.config.mjs` で GitHub Pages 向けに `base: '/Mypage'` を設定しています。別URLや別リポジトリ名で公開する場合は、`site` と `base` を合わせて変更してください。
