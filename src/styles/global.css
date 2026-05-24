@@ -1501,13 +1501,7 @@ button:focus-visible {
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
+  /* GSAP handles transform and transitions */
 }
 
 /* === Accenture Section === */

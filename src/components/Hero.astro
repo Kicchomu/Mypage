@@ -1,0 +1,158 @@
+<section class="section hero">
+  <div class="hero-grid">
+    <div class="hero-copy reveal">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        電気通信大学 2027年3月修了予定 / Accenture Solution Engineer
+      </div>
+
+      <p class="eyebrow" id="hero-eyebrow">2026.04 / M2 / Career Letter</p>
+
+      <h1 class="hero-title" id="typing-title">
+        <span class="type-line"><span class="text-content">就活の結論だけでなく、</span></span>
+        <span class="accent-line type-line"><span class="text-content">なぜこの道を選んだのか</span></span>
+        <span class="type-line"><span class="text-content">まで、きちんと伝える。</span></span>
+      </h1>
+    </div>
+
+<style is:global>
+  .hero-title .text-content,
+  .hero-title .typing-cursor {
+    display: inline-block !important;
+  }
+  .hero-title .typing-cursor {
+    width: 0.15em;
+    animation: blink 1s step-end infinite;
+    color: var(--accent);
+    margin-left: 4px;
+    vertical-align: baseline;
+    font-weight: 300;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
+
+    <div class="hero-side reveal">
+      <article class="spotlight-card">
+        <div class="spotlight-card-top">
+          <p class="panel-label">Final Decision</p>
+          <span class="status-chip">Technology Division</span>
+        </div>
+
+        <div class="accenture-logo-wrap">
+          <img
+            class="accenture-logo"
+            src={`${import.meta.env.BASE_URL}accenture-logo.svg`}
+            alt="Accenture logo"
+          />
+        </div>
+
+        <div class="spotlight-grid">
+          <article class="metric-role-card">
+            <span class="metric-label">Role</span>
+            <strong>Solution Engineer</strong>
+          </article>
+          <article class="metric-direction-card">
+            <span class="metric-label">Direction</span>
+            <strong>Tech × Business × End-to-End</strong>
+          </article>
+        </div>
+
+        <blockquote class="spotlight-quote">
+          ITを活用した仕組み化により、本質的な課題を解決し、人々の可能性を広げる。
+          その価値提供を、家族や周囲の人の幸せに還元していく。
+        </blockquote>
+      </article>
+
+      <article class="mini-note-card">
+        <p class="panel-label">Why It Fits</p>
+        <ul class="mini-note-list">
+          <li>技術理解を持ったまま、クライアント課題に深く関われる</li>
+          <li>大規模な案件で、企画と実装の両方を磨ける</li>
+          <li>将来のPMへの道筋が自然につながっている</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  // --- Dynamic hero eyebrow date (uses current year.month) ---
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      const heroEyebrow = document.getElementById('hero-eyebrow');
+      if (!heroEyebrow) return;
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+
+      // Preserve any trailing text starting with the first slash
+      const suffixMatch = heroEyebrow.textContent?.match(/\/.+$/);
+      const suffix = suffixMatch ? suffixMatch[0].trim() : ' / M2 / Career Letter';
+
+      heroEyebrow.textContent = `${year}.${month} ${suffix}`;
+    } catch (e) {
+      console.error('Failed to set dynamic hero eyebrow date:', e);
+    }
+  });
+</script>
+
+<script>
+  import { gsap } from "gsap";
+  import { TextPlugin } from "gsap/TextPlugin";
+
+  gsap.registerPlugin(TextPlugin);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // タイピングアニメーションの初期化（非表示にするだけ）
+    const typeLines = document.querySelectorAll('#typing-title .type-line');
+    const texts: string[] = [];
+
+    if (typeLines.length > 0) {
+      typeLines.forEach((line) => {
+        const textContent = line.querySelector('.text-content');
+        if (textContent) {
+          texts.push(textContent.textContent?.trim() || '');
+          textContent.textContent = '';
+        }
+      });
+    }
+
+    // グローバル関数として公開し、Cover開封後（またはLayoutから）呼ばれるようにする
+    // @ts-ignore
+    window.startHeroTyping = () => {
+      if (typeLines.length === 0) return;
+
+      const tl = gsap.timeline();
+
+      typeLines.forEach((line, index) => {
+        const text = texts[index];
+        const textContent = line.querySelector('.text-content');
+        if (!textContent) return;
+
+        tl.call(() => {
+          document.querySelectorAll('.typing-cursor').forEach(c => c.remove());
+          line.insertAdjacentHTML('beforeend', '<span class="typing-cursor">|</span>');
+        });
+
+        tl.to(textContent, {
+          duration: text.length * 0.08,
+          text: {
+            value: text,
+            preserveSpaces: true
+          },
+          ease: "none"
+        });
+      });
+    };
+    
+    // Coverページが存在しない場合は直ちに開始
+    if (!document.getElementById("cover-page")) {
+      // @ts-ignore
+      window.startHeroTyping();
+    }
+  });
+</script>

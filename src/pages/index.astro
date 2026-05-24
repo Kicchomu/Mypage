@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cover from '../components/Cover.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import Decision from '../components/Decision.astro';
+import AboutAccenture from '../components/AboutAccenture.astro';
+import Journey from '../components/Journey.astro';
+import Strengths from '../components/Strengths.astro';
+import Roadmap from '../components/Roadmap.astro';
+import LifePlan from '../components/LifePlan.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Career Letter | 吉川泰生の進路とこれから" description="吉川泰生の就職活動の経緯、アクセンチュアを選んだ理由、今後のキャリアプランとライフプランをまとめたページ">
+  <Cover />
+
+  <div class="page-shell main-content-hidden" id="main-content">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient ambient-c"></div>
+
+    <Navigation />
+
+    <main id="top">
+      <Hero />
+      
+      <section class="section" id="overview">
+        <div class="overview-panel reveal">
+          <div class="overview-heading">
+            <p class="eyebrow">At A Glance</p>
+            <h2>伝えたいこと</h2>
+          </div>
+
+          <div class="overview-grid">
+            <article>
+              <h3>結論</h3>
+              <p>アクセンチュアへの入社は、自分の強みと将来像を踏まえた納得ある意思決定である。</p>
+            </article>
+            <article>
+              <h3>判断軸</h3>
+              <p>技術理解、仕組み化、人を巻き込む力の3つをもっとも大きく価値へ変えられる環境を選択。</p>
+            </article>
+            <article>
+              <h3>その先</h3>
+              <p>就職がゴールではなく、将来はPMとして案件を動かし、家族を大切にできる土台を築く。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <Decision />
+      <AboutAccenture />
+      <Journey />
+      <Strengths />
+      <Roadmap />
+      <LifePlan />
+      <Footer />
+    </main>
+  </div>
+</Layout>

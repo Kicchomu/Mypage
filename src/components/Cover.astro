@@ -1,0 +1,148 @@
+<div id="cover-page" class="cover-page">
+  <div class="cover-ambient cover-ambient-1"></div>
+  <div class="cover-ambient cover-ambient-2"></div>
+  <div class="cover-content">
+    <p class="cover-eyebrow">A Message About My Future</p>
+    <h1 class="cover-title">Career Letter<br><span>Taisei Kikkawa</span></h1>
+    <p class="cover-subtitle">これからの進路と、その理由について。</p>
+    <div id="swipe-hint" class="swipe-hint">
+      <svg class="swipe-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 13L12 8L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17 19L12 14L7 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="swipe-text">Swipe Up to Open</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .swipe-hint {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0.8;
+    animation: bounceHint 2s infinite;
+  }
+  .swipe-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .swipe-text {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+  }
+  @keyframes bounceHint {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { Draggable } from "gsap/Draggable";
+
+  gsap.registerPlugin(Draggable);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const coverPage = document.getElementById("cover-page");
+    const swipeHint = document.getElementById("swipe-hint");
+    const mainContent = document.getElementById("main-content");
+    const body = document.body;
+
+    const unlockLetter = (observeDelay = 400) => {
+      body.classList.remove("is-locked");
+
+      if (mainContent) {
+        mainContent.classList.remove("main-content-hidden");
+        mainContent.classList.add("main-content-visible");
+        
+        // メインコンテンツ表示時のフェードイン（GSAP）
+        gsap.fromTo(mainContent,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+        );
+      }
+
+      setTimeout(() => {
+        // @ts-ignore
+        if (window.initGSAPAnimations) {
+          // @ts-ignore
+          window.initGSAPAnimations();
+        }
+        // @ts-ignore
+        if (window.startHeroTyping) {
+          // @ts-ignore
+          window.startHeroTyping();
+        }
+      }, observeDelay);
+      
+      // 開いた後はスクロールを許可し、Coverを完全に隠す
+      if (coverPage) {
+        gsap.set(coverPage, { display: "none" });
+      }
+    };
+
+    if (coverPage) {
+      // DraggableによるスワイプUIの実装
+      Draggable.create(coverPage, {
+        type: "y",
+        bounds: { minY: -window.innerHeight * 1.5, maxY: 0 },
+        inertia: true,
+        onDrag: function() {
+          const progress = Math.min(1, Math.max(0, -this.y / window.innerHeight));
+          
+          // スワイプ中、ヒントテキストをフェードアウト
+          if (swipeHint) {
+            gsap.set(swipeHint, { opacity: 1 - (progress * 3) });
+          }
+          
+          // カバーコンテンツ全体のパララックス（少しずつ上にズレる）
+          const coverContent = coverPage.querySelector(".cover-content");
+          if (coverContent) {
+            gsap.set(coverContent, { y: this.y * 0.5 });
+          }
+        },
+        onDragEnd: function() {
+          // 画面高さの30%以上スワイプされたら開封
+          if (this.y < -window.innerHeight * 0.3) {
+            gsap.to(coverPage, {
+              y: -window.innerHeight,
+              duration: 0.6,
+              ease: "power3.inOut",
+              onComplete: unlockLetter
+            });
+          } else {
+            // スワイプが足りない場合はバネのように元に戻る
+            gsap.to(coverPage, {
+              y: 0,
+              duration: 0.8,
+              ease: "elastic.out(1, 0.7)"
+            });
+            const coverContent = coverPage.querySelector(".cover-content");
+            if (coverContent) {
+              gsap.to(coverContent, {
+                y: 0,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.7)"
+              });
+            }
+            if (swipeHint) {
+              gsap.to(swipeHint, { opacity: 0.8, duration: 0.4 });
+            }
+          }
+        }
+      });
+    }
+
+    if (window.location.hash && window.location.hash !== "#top") {
+      if (coverPage) gsap.set(coverPage, { display: "none" });
+      unlockLetter(0);
+    }
+  });
+</script>

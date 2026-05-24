@@ -1,0 +1,211 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href={`${import.meta.env.BASE_URL}accenture-logo.svg`} type="image/svg+xml" />
+    
+    <noscript>
+      <style>
+        body { overflow: auto !important; height: auto !important; }
+        #cover-page { display: none !important; }
+        #main-content { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+      </style>
+    </noscript>
+  </head>
+  <body class="is-locked">
+    <a href="#top" class="skip-link">本文へスキップ</a>
+
+    <div class="reading-progress" aria-hidden="true">
+      <span id="reading-progress-fill"></span>
+    </div>
+
+    <slot />
+
+    <button id="back-to-top" class="back-to-top" aria-label="ページ上部へ戻る">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Top</span>
+    </button>
+
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // グローバル関数として公開し、Cover.astroから手動で初期化できるようにする
+      window.initGSAPAnimations = () => {
+        // --- 1. ScrollTrigger Animations ---
+        // グループ化された要素（カード等）に対するStaggerアニメーション
+        const gridContainers = gsap.utils.toArray('.decision-layout, .section-glance, .strength-grid, .roadmap-flow, .lifeplan-layout, .overview-grid');
+        
+        const staggeredElements: Element[] = [];
+        gridContainers.forEach((container: any) => {
+          const cards = container.querySelectorAll('.reveal');
+          if (cards.length > 0) {
+            cards.forEach((c: Element) => staggeredElements.push(c));
+            gsap.fromTo(cards, 
+              { y: 40, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: container,
+                  start: "top 85%",
+                  toggleActions: "play none none none"
+                }
+              }
+            );
+          }
+        });
+
+        // シンプルなreveal要素（staggerの対象外）
+        const allReveals = gsap.utils.toArray('.reveal');
+        allReveals.forEach((element: any) => {
+          if (!staggeredElements.includes(element)) {
+            gsap.fromTo(element, 
+              { y: 40, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 85%",
+                  toggleActions: "play none none none"
+                }
+              }
+            );
+          }
+        });
+      };
+
+      // 共通のインタラクション
+      document.addEventListener('DOMContentLoaded', () => {
+        // GSAPアニメーションはCover.astroがunlockLetterを呼んだタイミングで初期化するため、
+        // ここでは呼ばない（ただしCoverが存在しないページの場合は直接呼ぶ）
+        if (!document.getElementById("cover-page")) {
+          window.initGSAPAnimations();
+        }
+
+        // --- Scroll UI ---
+        const header = document.querySelector(".site-header") as HTMLElement;
+        const readingProgressFill = document.getElementById("reading-progress-fill");
+        const backToTopButton = document.getElementById("back-to-top");
+        const navLinks = document.querySelectorAll(".site-nav a[href^='#']");
+        const trackedSections = [...document.querySelectorAll("main section[id]")];
+
+        const updateScrollUI = () => {
+          const scrollTop = window.scrollY;
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = scrollHeight > 0 ? Math.min((scrollTop / scrollHeight) * 100, 100) : 0;
+
+          if (readingProgressFill) readingProgressFill.style.width = `${progress}%`;
+          if (header) {
+            header.style.background = scrollTop > 24 ? "rgba(7, 17, 31, 0.85)" : "rgba(7, 17, 31, 0.4)";
+          }
+          if (backToTopButton) backToTopButton.classList.toggle("is-visible", scrollTop > 600);
+
+          if (trackedSections.length && navLinks.length) {
+            const offset = 160;
+            let currentSectionId = trackedSections[0].id;
+            trackedSections.forEach((section) => {
+              if (scrollTop >= (section as HTMLElement).offsetTop - offset) {
+                currentSectionId = section.id;
+              }
+            });
+
+            navLinks.forEach((link) => {
+              const isActive = link.getAttribute("href") === `#${currentSectionId}`;
+              link.classList.toggle("is-active", isActive);
+              if (isActive) link.setAttribute("aria-current", "page");
+              else link.removeAttribute("aria-current");
+            });
+          }
+        };
+
+        window.addEventListener("scroll", updateScrollUI, { passive: true });
+        window.addEventListener("resize", updateScrollUI, { passive: true });
+        updateScrollUI();
+
+        if (backToTopButton) {
+          backToTopButton.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+
+        // --- Interactive cards ---
+        const interactiveCards = document.querySelectorAll(
+          ".spotlight-card, .mini-note-card, .overview-panel, .decision-statement, .feature-card, .timeline-content, .strength-card, .roadmap-card, .life-card, .final-card, .industry-card, .industry-facts, .section-glance-item, .acn-history-band, .acn-outlook-band"
+        );
+
+        interactiveCards.forEach((card) => {
+          card.addEventListener("mousemove", (event: MouseEvent) => {
+            const target = card as HTMLElement;
+            const rect = target.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const px = x / rect.width - 0.5;
+            const py = y / rect.height - 0.5;
+
+            target.style.setProperty("--rx", `${-py * 6}deg`);
+            target.style.setProperty("--ry", `${px * 8}deg`);
+            target.style.setProperty("--mx", `${px * 24}px`);
+            target.style.setProperty("--my", `${py * 24}px`);
+          });
+
+          card.addEventListener("mouseleave", () => {
+            const target = card as HTMLElement;
+            target.style.setProperty("--rx", "0deg");
+            target.style.setProperty("--ry", "0deg");
+            target.style.setProperty("--mx", "0px");
+            target.style.setProperty("--my", "0px");
+          });
+        });
+
+        // --- GSAP Magnetic buttons ---
+        const magneticButtons = document.querySelectorAll(".button, .cover-button");
+        magneticButtons.forEach((button) => {
+          const xTo = gsap.quickTo(button, "x", { duration: 0.4, ease: "power3.out" });
+          const yTo = gsap.quickTo(button, "y", { duration: 0.4, ease: "power3.out" });
+
+          button.addEventListener("mousemove", (e: Event) => {
+            const mouseEvent = e as MouseEvent;
+            const target = button as HTMLElement;
+            const rect = target.getBoundingClientRect();
+            const offsetX = ((mouseEvent.clientX - rect.left) / rect.width - 0.5) * 20;
+            const offsetY = ((mouseEvent.clientY - rect.top) / rect.height - 0.5) * 16;
+            xTo(offsetX);
+            yTo(offsetY);
+          });
+
+          button.addEventListener("mouseleave", () => {
+            gsap.to(button, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
